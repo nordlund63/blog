@@ -5,7 +5,7 @@ const User = require('../models/user');
 const JWTstrategy = require('passport-jwt').Strategy;
 const ExtractJWT = require('passport-jwt').ExtractJwt;
 
-passport.use('signup',
+passport.use('register',
     new localStrategy(
         {
             usernameField: 'name',
@@ -33,18 +33,20 @@ passport.use('login',
             try{
                 console.log('login auth');
                 const user = await User.findOne({name});
+                console.log(user);
                 if(!user){
-                    return done(null, false, {message: 'User not found'});
+                    return done(null, false, { statusCode: 404, message: 'User not found'});
                 }
-
+                console.log('is valid');
                 const validate = await user.isValidPassword(password);
                 if(!validate){
-                    return done(null, false, {message: 'Wrong password'});
+                    return done(null, false, {statusCode: 401, message: 'Wrong password'});
                 }
 
                 return done(null, user, {message: 'Logged in Successfully'});
             }
             catch(err){
+                console.log(err);
                 done(err);
             }
         }

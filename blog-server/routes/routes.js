@@ -12,10 +12,14 @@ router.post(
         'login',
         async (err, user, info) => {
           try {
-            if (err || !user) {
+            if (err) {
               const error = new Error('An error occurred.');
-  
-              return next(error);
+              return next(error); 
+            }
+            if(info && (info.statusCode === 401 || info.statusCode === 404)){
+              console.log(info);
+              res.status(info.statusCode);
+              return res.send();
             }
 
             console.log('login');
@@ -36,6 +40,7 @@ router.post(
               }
             );
           } catch (error) {
+            console.log(error);
             return next(error);
           }
         }
@@ -43,12 +48,11 @@ router.post(
     }
   );
 
-router.post('/signup', 
-    passport.authenticate('signup', {session: false}), 
+router.post('/register', 
+    passport.authenticate('register', {session: false}), 
     async(req, res, next) => {
-        console.log('Signup route');
         res.json({
-            message: 'Sign up successful',
+            message: 'Registration successful',
             user: req.user
         });
 });
