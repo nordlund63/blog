@@ -4,12 +4,14 @@ import axios from 'axios';
 import { Heading, Flex, Input, Stack, Button, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import Cookies from 'js-cookie';
-
+import { useHistory } from "react-router-dom";
 import { server } from '../config/server';
 
 export default function SignIn() {
   const [userName, setUserName] = useState('');
   const [password, setPassword] = useState('');
+
+  const history = useHistory();
 
   function onUserNameChange(e) {
     setUserName(e.target.value);
@@ -28,8 +30,11 @@ export default function SignIn() {
     axios
       .post(`${server}/login`, user)
       .then(result => {
-        console.log(result.headers);
-        Cookies.set('token', result.headers);
+        console.log(result);
+        if(result.status === 200){
+            Cookies.set('token', result.data.token);
+            history.push('/explore');
+        }
       })
       .catch(err => {
         console.log(`Something went wrong signing in: ${err}`);

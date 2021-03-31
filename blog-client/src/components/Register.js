@@ -36,7 +36,7 @@ export default function Register() {
         axios.post(`${server}/Register`, user)
         .then((result) => {
             console.log('Registered!');
-            history.push("/home");
+            history.push("/");
         })
         .catch((err) => {
             console.log(`Something went wrong signing in: ${err}`);

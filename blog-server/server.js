@@ -38,7 +38,6 @@ app.use(cookieParser());
 app.use('/', require('./routes/routes'));
 app.use('/user', passport.authenticate('jwt', {session: false}), require('./routes/secure-routes'));
 
-
 app.use((err, req, res, next) => {
     if (res.headersSent) return next(err);
     res.status(400).json({ err: err });
