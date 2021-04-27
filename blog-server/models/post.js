@@ -1,13 +1,13 @@
 const mongoose = require('mongoose');
 
-const CommentSchema = new mongoose.Schema({
+const PostSchema = new mongoose.Schema({
     user: { 
-        type: Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'User',
         required: true
     },
     tags: [{ 
-        type: Schema.Types.ObjectId, 
+        type: mongoose.Schema.Types.ObjectId, 
         ref: 'Tag'
     }],
     title: {
@@ -21,4 +21,4 @@ const CommentSchema = new mongoose.Schema({
 
 });
 
-const User = module.export = mongoose.model('user', UserSchema);
+const Post = module.exports = mongoose.model('post', PostSchema);

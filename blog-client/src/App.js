@@ -13,16 +13,17 @@ import history from './history';
 import SignIn from './components/SignIn';
 import Register from './components/Register';
 import Explore from './components/Explore';
+import CreatePost from './components/CreatePost';
 import Cookies from 'js-cookie';
 
 function App() {
   axios.interceptors.request.use(function (config) {
-      const token = Cookies.get('token');
-      if(token){
-        config.headers.Authorization =  `Bearer ${token}`;
-      }
+    const token = Cookies.get('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
 
-      return config;
+    return config;
   });
 
   return (
@@ -39,6 +40,9 @@ function App() {
               </Route>
               <Route path="/explore">
                 <Explore />
+              </Route>
+              <Route path={"/createpost"}>
+                <CreatePost />
               </Route>
             </Switch>
           </BrowserRouter>

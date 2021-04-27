@@ -80,7 +80,7 @@ export default function Register() {
                     w="70%"
                     bg="gray.100"
                     type="password"
-                    placeholder="Password"
+                    placeholder="Enter your password again..."
                     color="black" />
                 <Button
                     type="submit"
