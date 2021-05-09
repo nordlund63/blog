@@ -30,10 +30,11 @@ export default function Register() {
             console.log('They don\'t match!');
         }
         const user = {
-            name: userName,
+            email: userName,
             password: password
         };
-        axios.post(`${server}/Register`, user)
+        console.log(user);
+        axios.post(`${server}/register`, user)
         .then((result) => {
             console.log('Registered!');
             history.push("/");

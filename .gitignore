@@ -2,3 +2,5 @@
 /blog-client/node_modules/*
 /blog-server/node_modules
 /blog-server/node_modules/*
+/blog-server-knex/node_modules
+/blog-server-knex/node_modules/*

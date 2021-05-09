@@ -9,14 +9,14 @@ export default function CreatePost() {
     const [title, setPostTitle] = useState('');
     const [content, setContent] = useState('');
     const [tag, setTag] = useState('');
-    const [tags, setTags] = useState([]);
+    //const [tags, setTags] = useState([]);
 
     function handleSubmit(e) {
         e.preventDefault();
         const post = {
             title: title,
             content: content,
-            tags: tags
+            //tags: tags
         };
 
         axios
@@ -33,35 +33,39 @@ export default function CreatePost() {
         setPostTitle(e.target.value);
     }
 
-    function onTagChange(e){
-        setTag(e.target.value);
+    function onSetContent(e){
+        setContent(e.target.value);
     }
 
-    function onTagEnter(e){
-        if(e.key === "Enter"){
-            onTagAdd();
-        }
-    }
+    // function onTagChange(e){
+    //     setTag(e.target.value);
+    // }
 
-    function onTagAddClick(e){
-        onTagAdd();
-    }
+    // function onTagEnter(e){
+    //     if(e.key === "Enter"){
+    //         onTagAdd();
+    //     }
+    // }
 
-    function onTagAdd(){
-        if(tag !== '' && tags && tags.filter(e => e === tag).length == 0){
-            setTags(oldTags => [...oldTags, {name: tag}]);
-            setTag('');
-        }
-    }
+    // function onTagAddClick(e){
+    //     onTagAdd();
+    // }
 
-    function onTagRemove(tag){
-        setTags(tags.filter(e => e.name !== tag.name));
-    }
+    // function onTagAdd(){
+    //     if(tag !== '' && tags && tags.filter(e => e === tag).length == 0){
+    //         setTags(oldTags => [...oldTags, {name: tag}]);
+    //         setTag('');
+    //     }
+    // }
 
-    let renderTags;
-    if(tags && tags.length > 0){
-        renderTags = tags.map(tag => <NewTag key={tag.name} name={tag.name} onTagRemove={() => onTagRemove(tag)} />)
-    }
+    // function onTagRemove(tag){
+    //     setTags(tags.filter(e => e.name !== tag.name));
+    // }
+
+    // let renderTags;
+    // if(tags && tags.length > 0){
+    //     renderTags = tags.map(tag => <NewTag key={tag.name} name={tag.name} onTagRemove={() => onTagRemove(tag)} />)
+    // }
 
     return (
         <Flex
@@ -100,12 +104,13 @@ export default function CreatePost() {
                     <Box>
                         <Text>Content</Text>
                         <Textarea
+                            onChange={onSetContent}
                             w="100%"
                             bg="gray.100"
                             placeholder="Content"
                             color="black" />
                     </Box>
-                    <Box>
+                    {/* <Box>
                         <Text>Tags</Text>
                         <HStack>
                             <Input
@@ -119,7 +124,7 @@ export default function CreatePost() {
                             <Button onClick={onTagAddClick} colorScheme="orange">Add</Button>
                         </HStack>
                         {renderTags}
-                    </Box>
+                    </Box> */}
                     <HStack
                     justifyContent="flex-end">
                         <Button variant="ghost">Cancel</Button>

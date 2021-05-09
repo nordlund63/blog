@@ -24,7 +24,7 @@ export default function SignIn() {
   function handleSubmit(e) {
     e.preventDefault();
     const user = {
-      name: userName,
+      email: userName,
       password: password,
     };
     axios
