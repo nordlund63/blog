@@ -2,7 +2,7 @@ import { Flex, Stack } from '@chakra-ui/layout';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { server } from '../config/server';
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import CreatePost from './CreatePost';
 import {
     BrowserRouter as Router,
@@ -10,6 +10,7 @@ import {
     useRouteMatch
 } from "react-router-dom";
 import PostCard from './PostCard';
+import { Button } from '@chakra-ui/button';
 
 export default function Explore() {
     const [pagePosts, setPagePosts] = useState({
@@ -56,11 +57,13 @@ export default function Explore() {
     }
 
     return (
-        <Flex>
+        <Flex flexDirection="column">
+            <Link to="/createpost">
+                <Button alignSelf="flex-end" w="2xs" m="2" colorScheme="orange">New Post</Button>
+            </Link>
             <Stack>
                 {postCards}
             </Stack>
-
             <Switch>
             </Switch>
         </Flex>

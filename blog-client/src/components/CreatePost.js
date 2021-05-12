@@ -4,12 +4,15 @@ import axios from 'axios';
 import React from 'react';
 import { useState } from 'react';
 import { server } from '../config/server';
+import { useHistory } from "react-router-dom";
 
 export default function CreatePost() {
     const [title, setPostTitle] = useState('');
     const [content, setContent] = useState('');
     const [tag, setTag] = useState('');
     //const [tags, setTags] = useState([]);
+
+    const history = useHistory();
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -23,6 +26,7 @@ export default function CreatePost() {
             .post(`${server}/post/createpost`, post)
             .then((result) => {
                 console.log('Added item!');
+                history.push("/explore");
             })
             .catch((err) => {
                 console.log(`Something went wrong creating new post: ${err}`);

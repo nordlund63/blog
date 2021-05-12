@@ -71,6 +71,7 @@ router.post(
                         user: req.user,
                         token: req.query.secret_token
                     })
+                    res.redirect('/explore');
                 })
                 .catch((err) => {
                    throw(err);
