@@ -14,6 +14,10 @@ const PostsService = {
     async getPostCount() {
         return db('posts').count().first();
     },
+
+    async getPost(id) {
+        return db('posts').where({id: id}).first();
+    },
 };
 
 module.exports = PostsService;

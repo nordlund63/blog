@@ -59,7 +59,6 @@ passport.use(
         async (token, done) => {
             try{
                 const user = await UsersService.findUserById(token.id);
-                console.log(token);
                 return done(null, user);
             }
             catch(err){

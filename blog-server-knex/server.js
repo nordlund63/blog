@@ -21,8 +21,8 @@ app.use('/', require('./routes/public-routes'));
 if (process.env.NODE_ENV === "development") {
 }
 else{
-    //app.use('/post', require('./routes/post-routes'));
-    app.use('/post', passport.authenticate('jwt', {session: false}), require('./routes/post-routes'));
+    //app.use('/posts', require('./routes/post-routes'));
+    app.use('/posts', passport.authenticate('jwt', {session: false}), require('./routes/post-routes'));
 }
 
 app.use((err, req, res, next) => {

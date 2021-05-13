@@ -23,7 +23,7 @@ export default function CreatePost() {
         };
 
         axios
-            .post(`${server}/post/createpost`, post)
+            .post(`${server}/posts/createpost`, post)
             .then((result) => {
                 console.log('Added item!');
                 history.push("/explore");

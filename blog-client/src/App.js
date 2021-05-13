@@ -4,8 +4,6 @@ import {
   Box,
   Flex,
   theme,
-  Text,
-  Stack,
 } from '@chakra-ui/react';
 import { Router, Route, Link, BrowserRouter, Switch } from 'react-router-dom';
 import axios from 'axios';
@@ -15,6 +13,7 @@ import Register from './components/Register';
 import Explore from './components/Explore';
 import CreatePost from './components/CreatePost';
 import Cookies from 'js-cookie';
+import ViewPost from './components/ViewPost';
 
 function App() {
   axios.interceptors.request.use(function (config) {
@@ -44,6 +43,9 @@ function App() {
               </Route>
               <Route path={"/createpost"}>
                 <CreatePost />
+              </Route>
+              <Route path={"/post/:id"}>
+                <ViewPost />
               </Route>
             </Switch>
           </BrowserRouter>

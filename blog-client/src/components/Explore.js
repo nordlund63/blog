@@ -23,7 +23,7 @@ export default function Explore() {
     useEffect(() => {
         const fetchData = async () => {
             const posts = await axios
-                .get(`${server}/post/pagination`, { params: { paginationCount: 10, page: 1 } })
+                .get(`${server}/posts/`, { params: { paginationCount: 10, page: 1 } })
                 .then(result => {
                     return result.data.posts;
                 })
@@ -32,7 +32,7 @@ export default function Explore() {
                 });
 
             const postCount = await axios
-                .get(`${server}/post/count`)
+                .get(`${server}/posts/count`)
                 .then(result => {
                     return result.data.count.count;
                 })

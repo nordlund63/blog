@@ -4,10 +4,10 @@ const UsersService = require('../models/UsersService');
 const PostsService = require('../models/PostsService');
 
 router.get(
-    '/pagination',
+    '/',
     async (req, res, next) => {
         try {
-            console.log(req.query.paginationCount)
+            console.log('thing')
             const offset = (req.query.page - 1) * 10;
             await PostsService.getPaginationPosts(req.query.paginationCount, offset)
                 .then(result => {
@@ -28,6 +28,31 @@ router.get(
         }
     }
 )
+
+router.get(
+    '/:id',
+    async(req, res, next) => {
+        try {
+            console.log(req.params)
+            await PostsService.getPost(req.params.id)
+                .then(result => {
+                    res.json({
+                        post: result,
+                        token: req.query.secret_token
+                    })
+                })
+                .catch((err) => {
+                    throw(err);
+                });
+        }
+        catch (err) {
+            console.log(err);
+            res
+                .status(500)
+                .json({ success: false, msg: `Something went wrong. ${err}` });
+        }
+    }
+);
 
 router.get(
     '/count',
