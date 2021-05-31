@@ -9,7 +9,6 @@ import { useHistory } from "react-router-dom";
 export default function CreatePost() {
     const [title, setPostTitle] = useState('');
     const [content, setContent] = useState('');
-    const [tag, setTag] = useState('');
     //const [tags, setTags] = useState([]);
 
     const history = useHistory();
@@ -33,6 +32,10 @@ export default function CreatePost() {
             })
     }
 
+    function onCancel(e){
+        history.push("/explore");
+    }
+
     function onSetPostTitle(e){
         setPostTitle(e.target.value);
     }
@@ -40,36 +43,6 @@ export default function CreatePost() {
     function onSetContent(e){
         setContent(e.target.value);
     }
-
-    // function onTagChange(e){
-    //     setTag(e.target.value);
-    // }
-
-    // function onTagEnter(e){
-    //     if(e.key === "Enter"){
-    //         onTagAdd();
-    //     }
-    // }
-
-    // function onTagAddClick(e){
-    //     onTagAdd();
-    // }
-
-    // function onTagAdd(){
-    //     if(tag !== '' && tags && tags.filter(e => e === tag).length == 0){
-    //         setTags(oldTags => [...oldTags, {name: tag}]);
-    //         setTag('');
-    //     }
-    // }
-
-    // function onTagRemove(tag){
-    //     setTags(tags.filter(e => e.name !== tag.name));
-    // }
-
-    // let renderTags;
-    // if(tags && tags.length > 0){
-    //     renderTags = tags.map(tag => <NewTag key={tag.name} name={tag.name} onTagRemove={() => onTagRemove(tag)} />)
-    // }
 
     return (
         <Flex
@@ -114,24 +87,9 @@ export default function CreatePost() {
                             placeholder="Content"
                             color="black" />
                     </Box>
-                    {/* <Box>
-                        <Text>Tags</Text>
-                        <HStack>
-                            <Input
-                            w="100%"
-                            bg="gray.100"
-                            placeholder="Press Enter..."
-                            color="black"
-                            value={tag}
-                            onChange={onTagChange}
-                            onKeyPress={onTagEnter} ></Input>
-                            <Button onClick={onTagAddClick} colorScheme="orange">Add</Button>
-                        </HStack>
-                        {renderTags}
-                    </Box> */}
                     <HStack
                     justifyContent="flex-end">
-                        <Button variant="ghost">Cancel</Button>
+                        <Button variant="ghost" onClick={onCancel}>Cancel</Button>
                         <Button colorScheme="blue" type="submit" variant="solid">New Post</Button>
                     </HStack>
                 </Stack>

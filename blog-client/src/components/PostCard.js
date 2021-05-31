@@ -12,7 +12,7 @@ export default function PostCard(props) {
             borderColor="gray.200"
             border="3px"
             p="2">
-            <Link>
+            <Link to={`/post/${props.postId}`}>
                 <Text>{props.title}</Text>
             </Link>
             <Flex

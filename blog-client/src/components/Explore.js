@@ -53,7 +53,7 @@ export default function Explore() {
 
     let postCards;
     if (pagePosts.posts.length > 0) {
-        postCards = pagePosts.posts.map(e => <PostCard key={e.postId} title={e.title} email={e.email}></PostCard>);
+        postCards = pagePosts.posts.map(e => <PostCard key={e.postId} postId={e.postId} title={e.title} email={e.email}></PostCard>);
     }
 
     return (
